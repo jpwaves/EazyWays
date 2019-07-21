@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--<meta http-equiv="refresh" content="20">-->
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <div class="leftWindow">
+      <div class="text">
+        <h1 class="title">EazyWays</h1>
+        <div class="signIn">
+          <a id="scLink" class="connectSC" href="#">Sign in to your Smart Car!</a>
+        </div>
+        <div class="search">
+          <p>If you do not have a Smart Car, enter your car model in the text box below.</p>
+          <input class="searchBox" type="text" placeholder="Enter your car model">
+        </div>
+        <div class="line"></div>
+        <form class="features">
+          <input id="startLoc" class="start" type="text" placeholder="Enter starting address">
+          <input id="destination" class="end" type="text" placeholder="Enter destination address">
+          <div class="food">
+            <input type="checkbox"><p>Food stops</p>
+          </div>
+          <div class="bathroom">
+            <input type="checkbox"><p>Bathroom stops</p>
+          </div>
+          <button class="btn" type="button" onclick="start()">Enter</button>
+        </form>
+        <div class="directions">
+          <h2>Directions</h2>
+          <ol>
+            <li>x</li>
+            <li>y</li>
+            <li>z</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="rightWindow">
+      <div id="map" style="width: 100%; height: 600px; margin: 0; padding: 0;"></div>
+      <div class="bottomBar">
+        <p>Estimated Time of Arrival:<br>XXXX Hours<br>XXXX Minutes</p>
+      </div>
+    </div>
+  </div>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+  <script src="here-map.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    const here = new HereMap("5pZUkkcc8IFE6J1QkAaF", "QR9shQY5Up1T1tlU33r2Ww", document.getElementById("map"));
+    const start = async() => {
+      console.log(2);
+      var start = document.getElementById("startLoc").value;
+      var destination = document.getElementById("destination").value;
+      var loc1 = await here.geocode(start);
+      var loc2 = await here.geocode(destination);
+      here.dropMarker(loc1.Latitude, loc1.Longitude);
+      here.dropMarker(loc2.Latitude, loc2.Longitude);
+      here.drawLinesBetweenMarkers(
+        {
+          lat: loc1.Latitude,
+          lng: loc1.Longitude
+        },
+        {
+          lat: loc2.Latitude,
+          lng: loc2.Longitude
+        });
+              /*
+              here.geocode("Tracy, CA").then(result => {
+                console.log(result);
+                here.dropMarker(result.latitude, result.longitude);
+              });
+              */
+      here.drawRoute(loc1,loc2);
+      //window.location.reload();
+    }
+  </script>
+  <script src="https://javascript-sdk.smartcar.com/2.3.0/sdk.js"></script>
+  <script>
+    const smartcar = new Smartcar({
+      clientId: 'c84bdea0-da30-4a27-a204-47c791a3e690',
+      redirectUri: 'http://localhost:8000',
+      scope: ['read_vehicle_info', 'read_odometer'],
+      onComplete: function(err, code) {
+        if (err) {
+          // handle errors from Connect (i.e. user denies access)
+        }
+        // handle the returned code by sending it to your back-end server
+        sendToBackend(code);
+      },
+    });
+    smartcar.addClickHandler({id: "scLink"});
+  </script>
+</body>
+</html>

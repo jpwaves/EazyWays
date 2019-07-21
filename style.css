@@ -1,0 +1,174 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Left Window */
+.leftWindow {
+  display: inline-block;
+  float: left;
+  width: 30%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: red;
+}
+
+.text {
+  display: block;
+}
+
+.title {
+  display: block;
+  font-size: 48px;
+  text-align: center;
+}
+
+/* Sign in/ Car model search bar */
+
+.signIn {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.search {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.search p {
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px 0;
+}
+
+.search .connectSC {
+  margin-bottom: 15px;
+}
+
+.searchBox {
+  width: 200px;
+  height: 24px;
+  font-size: 20px;
+}
+
+/* Line */
+
+.line {
+  background-color: black;
+  width: 93%;
+  height: 2px;
+  margin: 10px auto;
+}
+
+/* User Inputs */
+.features {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.start,
+.end {
+  margin: 0 auto;
+  width: 200px;
+  height: 24px;
+  font-size: 20px;
+}
+
+.features * {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.features div {
+  text-align: left;
+  margin-bottom: 5px;
+  width: 210px;
+  margin: 0 auto;
+}
+
+.features div * {
+  display: inline;
+}
+
+.features div p {
+  display: inline;
+  margin-left: 15px;
+}
+
+.features .btn {
+  margin: 10px auto;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+  font-size: 36px;
+}
+
+/* Directions */
+
+.directions {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.directions ol {
+  width: 75%;
+  margin: auto;
+  text-align: left;
+}
+
+/* Right Window */
+.rightWindow {
+  display: flex;
+  flex-flow: column;
+  float: right;
+  width: 70%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: LightBlue;
+}
+
+/* HERE Map API */
+#map {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+/* ETA Box */
+.bottomBar {
+  width: 270px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,255,0,0.4);
+  text-align: center;
+  right: 0;
+  border-top-left-radius: 25px;
+}
+
+.bottomBar p {
+  margin-top: 20px;
+  font-size: 24px;
+  vertical-align: middle;
+}
